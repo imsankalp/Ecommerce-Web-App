@@ -3,10 +3,15 @@
 
 <div class="container">
     
+
+
     <div class="row justify-content-md-center">
         <section>
             <h4 class="display-4 text-center"> Shopping Kart</h4>
+           
         </section>
+        <%- include("../partials/flash") %>  
+        
         <% for(let product of products){ %> 
         <div class="col-lg-3 m-2 text-center ">
             <div class="card p-2" style="width: 18rem;">
