@@ -3,6 +3,7 @@ const router = express.Router();
 const Product = require('../models/product')
 const methodOverride = require('method-override');
 const Review= require('../models/review');
+const {isUserLoggedIn} = require('../middleware');
 
 //Show all Products
 router.get('/products', async (req, res) => {
@@ -19,11 +20,11 @@ router.get('/products', async (req, res) => {
 });
 
 //Create a new product
-router.get('/products/new',  (req, res) => {
+router.get('/products/new',isUserLoggedIn,  (req, res) => {
 
     res.render('products/new');
 })
-router.post('/products', async(req, res) => {
+router.post('/products',isUserLoggedIn, async(req, res) => {
 
     try{
         await Product.create(req.body.product);
@@ -52,7 +53,7 @@ router.get('/products/:id', async (req, res) => {
 })
 
 //Get edit form
-router.get('/products/:id/edit', async(req, res) => {
+router.get('/products/:id/edit',isUserLoggedIn, async(req, res) => {
 
     try{
         const product = await Product.findById(req.params.id);
@@ -67,7 +68,7 @@ router.get('/products/:id/edit', async(req, res) => {
 
 
 //Update the product
-router.patch('/products/:id', async(req, res) => {
+router.patch('/products/:id', isUserLoggedIn, async(req, res) => {
 
     try{
         await Product.findByIdAndUpdate(req.params.id, req.body.product);
@@ -82,7 +83,7 @@ router.patch('/products/:id', async(req, res) => {
 })
 
 //Delete a product
-router.delete('/products/:id', async(req, res) => {
+router.delete('/products/:id',isUserLoggedIn,  async(req, res) => {
 
     try{
         await Product.findByIdAndDelete(req.params.id);
@@ -96,11 +97,14 @@ router.delete('/products/:id', async(req, res) => {
 })
 
 //Creating a new comment
-router.post('/products/:id/review', async (req, res) => {
+router.post('/products/:id/review',isUserLoggedIn, async (req, res) => {
 
     try{
         const product = await (await Product.findById(req.params.id));
-        const review = new Review(req.body);
+        const review = new Review({
+            user: req.user.username,
+            ...req.body
+        });
 
         product.reviews.push(review);
 

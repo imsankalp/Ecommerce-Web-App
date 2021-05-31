@@ -17,10 +17,19 @@
             <a class="nav-link active" href="/products/new" tabindex="-1">Add</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-dark" style="background-color: #caf0f8;" type="submit">Search</button>
-        </form>
+        <div class="navbar-nav ml-auto">
+
+          <%if(!currentUser){%>
+            <a href="/login" class="nav-link active">Login</a>
+          
+            <%}else{%>
+          <a href="#" class="nav-link active text-capitalize">Hello <%=currentUser.username%></a>
+          <a href="#" class="nav-link active"><i class="fas fa-shopping-cart"></i> 
+            <sup><span class="badge bg-danger">2</span></sup> 
+          </a>
+          <a href="/logout" class="nav-link active">Logout</a>
+        <%}%>
+      </div>
       </div>
     </div>
   </nav>
