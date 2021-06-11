@@ -1,2 +1,4 @@
 /node_modules
 package-lock.json
+nextfeatures.txt
+.env

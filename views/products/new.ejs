@@ -4,24 +4,24 @@
 
 
 <div class="container" style="margin-top:3rem;width:80vw">
-    <form class="needs-validation" action="/products" method="POST" style="max-width:70%;margin:10px auto" novalidate>
+    <form class="needs-validation" action="/products" method="POST" style="max-width:70%;margin:10px auto" enctype='multipart/form-data' novalidate>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Product Name" name="product[name]" required>
+            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" required>
             <div class="valid-feedback">
                 Looks good!
               </div>    
               </div>
             <div class="mb-3">
-                  <label for="img" class="form-label">Image URL</label>
-                  <input type="text" class="form-control" id="img" placeholder="Image URL" name="product[img]" required>
+                  <label for="img" class="form-label">Upload Product Image</label>
+                  <input type="file" class="form-control" id="image" name="image" required>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label">Price in $</label>
-                    <input type="number" class="form-control" id="price" placeholder="Price" name="product[price]" required>
+                    <label for="price" class="form-label">Price: </label>
+                    <input type="number" class="form-control" id="price" placeholder="Price" name="price" required>
                     <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -29,7 +29,7 @@
         
                 <div class="mb-3">
                     <label for="desc" class="form-label">Description</label>
-                    <textarea class="form-control" id="desc" cols="30" rows="5" name="product[desc]" required></textarea>
+                    <textarea class="form-control" id="desc" cols="30" rows="5" name="desc" required></textarea>
                     <div class="valid-feedback">
                         Looks good!
                       </div>

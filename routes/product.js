@@ -4,6 +4,8 @@ const Product = require('../models/product')
 const methodOverride = require('method-override');
 const Review= require('../models/review');
 const {isUserLoggedIn} = require('../middleware');
+const upload = require('../util/multer');
+const cloudinary = require('../util/cloudinary');
 
 //Show all Products
 router.get('/products', async (req, res) => {
@@ -24,10 +26,18 @@ router.get('/products/new',isUserLoggedIn,  (req, res) => {
 
     res.render('products/new');
 })
-router.post('/products',isUserLoggedIn, async(req, res) => {
+router.post('/products',isUserLoggedIn, upload.single('image'), async(req, res) => {
 
     try{
-        await Product.create(req.body.product);
+        const uploadedImage = await cloudinary.uploader.upload(req.file.path);
+        const product = new Product({
+            name: req.body.name,
+            img : uploadedImage.secure_url,
+            price: req.body.price,
+            desc: req.body.desc,
+            cloudinary_id: uploadedImage.public_id,
+        })
+        await product.save();
         req.flash('success','Product created successfully!');
         res.redirect('/products');
     }

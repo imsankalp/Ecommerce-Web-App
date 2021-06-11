@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 // const seedDB = require('./seed');
 const methodOverride = require('method-override');
 const session = require('express-session');
@@ -16,19 +18,20 @@ const authRoutes = require('./routes/auth');
 const cartRoutes = require('./routes/cart');
 
 
-mongoose.connect('mongodb://localhost:27017/shopApp',
+mongoose.connect(process.env.MONGO_URL,
     {
-        useNewUrlParser: true,
+        useNewUrlParser: true, 
         useUnifiedTopology: true,
-        useFindAndModify:false,
-        useCreateIndex:true,
+        useFindAndModify: false,
+        useCreateIndex: true,
     })
-    .then(() =>{
-        console.log("DB connected");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+.then(() => {
+    console.log("DB connected!");
+})
+.catch(err => {
+    console.log("Connection Failed");
+    console.log(err);
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));

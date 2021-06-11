@@ -15,6 +15,9 @@ const productSchema = new mongoose.Schema({
     desc: {
         type: String,
     },
+    cloudinary_id:{
+        type: String,
+    },
     reviews: [
         {
             type: mongoose.Schema.Types.ObjectId,

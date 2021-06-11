@@ -1,0 +1,5 @@
+1. Make Retailer login/signup features.
+2. Add payment gateway
+3. Add user profile.
+4. Use malter to upload image.
+5. Google, facebook login for users.
