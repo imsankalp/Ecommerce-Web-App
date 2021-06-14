@@ -25,6 +25,7 @@
           
             <%}else{%>
           <a href="#" class="nav-link active text-capitalize">Hello <%=currentUser.username%></a>
+          <a href="/user/<%= currentUser._id%>/favourites" class="nav-link active">Favourites</a>
           <a href="/user/<%= currentUser._id%>/cart" class="nav-link active"><i class="fas fa-shopping-cart"></i> 
             <sup><span class="badge bg-danger"><%= currentUser.cart.length %> </span></sup> 
           </a>

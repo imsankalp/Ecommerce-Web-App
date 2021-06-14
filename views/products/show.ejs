@@ -17,11 +17,15 @@
                   <a href="#" class="btn btn-success">Buy</a>
                   <div class="mt-2 mb-2">
                       <form action="/user/<%= product._id%>/cart" method="POST">
-                      <button class="btn btn-secondary">Add To Cart</button>
+                      <button class="btn btn-warning">Add To Cart</button>
                     </form>
                   </div>
-                  
-                  <a href="/products/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
+                  <div class="mt-2 mb-2">
+                    <form action="/user/<%= product._id%>/favourites" method="POST">
+                    <button class="btn btn-info">Favourites <i class="far fa-bookmark"></i></button>
+                  </form>
+                </div>
+                  <a href="/products/<%=product._id%>/edit" class="btn btn-secondary">Edit</a>
                   <div class="mt-3">
                     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
