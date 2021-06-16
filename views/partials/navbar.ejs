@@ -24,8 +24,8 @@
             <a href="/register" class="nav-link active">Register</a>
           
             <%}else{%>
-          <a href="#" class="nav-link active text-capitalize">Hello <%=currentUser.username%></a>
-          <a href="/user/<%= currentUser._id%>/favourites" class="nav-link active">Favourites</a>
+          <a href="/user/<%= currentUser._id%>/profile" class="nav-link active text-capitalize"><i class="far fa-user"></i>  Hello <%=currentUser.username%></a>
+          <a href="/user/<%= currentUser._id%>/favourites" class="nav-link active"><i class="fas fa-heart" style="color: snow;"></i></a>
           <a href="/user/<%= currentUser._id%>/cart" class="nav-link active"><i class="fas fa-shopping-cart"></i> 
             <sup><span class="badge bg-danger"><%= currentUser.cart.length %> </span></sup> 
           </a>

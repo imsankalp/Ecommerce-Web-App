@@ -1,0 +1,58 @@
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+<div class="container" style="margin-top:3rem;width:80vw">
+    <form class="needs-validation" action="/user/<%= currentUser.id%>/profile?_method=PATCH" method="POST" style="max-width:70%;margin:10px auto" enctype='multipart/form-data' novalidate>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Full Name" name="name" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>    
+              </div>
+            <div class="mb-3">
+                  <label for="img" class="form-label">Upload Your Photo</label>
+                  <input type="file" class="form-control" id="image" name="image" >
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label for="contactno" class="form-label">Contact no: </label>
+                    <input type="number" class="form-control" id="contactno" placeholder="Contactno" name="contactno" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                </div>
+        
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
+                        <label class="form-check-label" for="male">
+                          Male
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="female">
+                          Female
+                        </label>
+                      </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dateOfBirth" class="form-label">Date of Birth </label>
+                    <input type="date" class="form-control" id="dateofbirth" placeholder="Contactno" name="dateOfBirth" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                </div>
+               
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+
+
+
+
+
+<%- include("../partials/footer")%>

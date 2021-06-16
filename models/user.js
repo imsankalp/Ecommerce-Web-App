@@ -8,6 +8,29 @@ const userSchema = new mongoose.Schema({
         required : true,
         unique: true
     },
+    name: {
+        type: String,
+        default: 'no name'
+    },
+    contactno: {
+        type: Number,
+        default: 0,
+    },
+    img: {
+        type: String,
+        default: "",
+    },
+    gender: {
+        type: String,
+        default:"NA"
+    },
+    dateOfBirth: {
+        type: String,
+    },
+    cloudinary_id:{
+        type: String,
+        default: ""
+    },
     cart: [ 
         {
             type: mongoose.Schema.Types.ObjectId,
