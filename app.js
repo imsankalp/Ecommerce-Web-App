@@ -3,7 +3,9 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const dotenv = require('dotenv');
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const seedDB = require('./seed');
 const methodOverride = require('method-override');
 const session = require('express-session');
