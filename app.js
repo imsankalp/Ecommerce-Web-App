@@ -17,6 +17,7 @@ const Order = require('./models/order');
 const cors = require('cors');
 const crypto = require('crypto');
 const Razorpay = require('razorpay');
+const MemoryStore = require('memorystore')(session);
 
 //Routes
 const productRoutes = require('./routes/product');
@@ -48,6 +49,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cors());
+app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
+    resave: false,
+    secret: 'keyboard cat'
+}))
 
 const sessionConfig = {
     secret:"weneedsomebettersecret",
