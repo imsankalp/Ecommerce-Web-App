@@ -4,18 +4,24 @@ const mongoose = require('mongoose');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
-// const seedDB = require('./seed');
+const seedDB = require('./seed');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
+const Order = require('./models/order');
+const cors = require('cors');
+const crypto = require('crypto');
+const Razorpay = require('razorpay');
 
 //Routes
 const productRoutes = require('./routes/product');
 const authRoutes = require('./routes/auth');
 const cartRoutes = require('./routes/cart');
+const orderRoutes = require('./routes/order');
+const paymentRoutes = require('./routes/payment');
 
 
 mongoose.connect(process.env.MONGO_URL,
@@ -37,7 +43,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(cors());
 
 const sessionConfig = {
     secret:"weneedsomebettersecret",
@@ -79,8 +87,11 @@ app.get('/', (req, res) => {
 app.use(productRoutes);
 app.use(authRoutes);
 app.use(cartRoutes);
+app.use(orderRoutes);
+app.use(paymentRoutes);
 
-app.listen(3000, () => {
+
+app.listen(process.env.PORT || 3000, () => {
 
     console.log("Server running at port no 3000");
 })

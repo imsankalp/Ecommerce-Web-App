@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const Product = require('./product');
 
 
 const userSchema = new mongoose.Schema({
@@ -42,8 +43,14 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product'
         }
-    ]
+    ],
+    cartAmount: {
+        type: Number,
+        default: 0,
+    }
 })
+
+
 
 userSchema.plugin(passportLocalMongoose);
 

@@ -1,0 +1,15 @@
+<%- include("../partials/header")%> <%- include("../partials/navbar")%>
+
+<div class="mt-2">
+    <p class="fw-bold">Total Amount :  &#8377; <%=totalAmount%></p>
+    <form action="/user/<%=currentUser._id%>/cart/order" method="post">
+      <fieldset>
+        <h2>Enter Delivery Address</h2>
+        <textarea name="address" id="address" cols="30" rows="10" placeholder="House no, Building-name/Locality, Area, City, State, pincode"></textarea>
+        <!-- full-name input-->
+    </fieldset>
+    <button class="btn btn-success" >Proceed to PAY</button>
+  </form>
+  </div>
+
+

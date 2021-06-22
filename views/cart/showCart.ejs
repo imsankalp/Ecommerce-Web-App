@@ -10,18 +10,18 @@
   <div class="row">
   <div class="col-lg-8">
 
-  <%for(let item of userCart){%>
+  <%for(let items of userCart){%>
         <div class="card mb-3" style="width: 90%;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img style="width: 200px;" src="<%=item.img%>" alt="...">
+              <img style="width: 200px;" src="<%=items.img%>" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"><%=item.name%></h5>
+                <h5 class="card-title"><%=items.name%></h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 
-                <form action="/user/<%=currentUser._id%>/cart/<%=item._id%>?_method=DELETE" method="post">
+                <form action="/user/<%=currentUser._id%>/cart/<%=items._id%>?_method=DELETE" method="post">
                   <button class="btn btn-sm btn-danger">remove</button>
                 </form>
                 
@@ -44,19 +44,19 @@
             <li class="list-group-item"><%=item.name%> - <strong>&#8377; <%=item.price%></strong></li>
             <%totalAmount+=item.price%>
           <%}%>
-          
         </ul>
-
-        <div class="mt-2">
+        <div class="mt-3">
           <p class="fw-bold">Total Amount :  &#8377; <%=totalAmount%></p>
-          <a href="/cart/payment" class="btn btn-success">Proceed To Pay</a>
-        </div>
+          <form action="/user/<%=currentUser._id%>/cart/order" method="POST">
+            <textarea name="address" id="address" cols="5" rows="2" class="form-control" placeholder="Enter Address"></textarea>
+          <button>Order</button>
+          </form>
+          
        
       </div>
      
     </div>
 
 </div>
-
 
 <%- include("../partials/footer")%>
